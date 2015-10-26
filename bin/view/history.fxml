@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.InterfacciaStorico">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../diet.jpg" />
+         </image></ImageView>
+         
+      <Text layoutX="77.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dietlytics" wrappingWidth="219.0">
+      <font>
+            <Font size="48.0" />
+         </font>
+      </Text>
+      <SplitPane dividerPositions="0.29797979797979796" layoutX="77.0" layoutY="201.0" prefHeight="337.0" prefWidth="640.0">
+        <items>
+          <AnchorPane fx:id="apsx" minHeight="0.0" minWidth="0.0" prefHeight="241.0" prefWidth="83.0">
+               <children>
+               </children>
+          </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <TextArea fx:id="visualizzadieta" prefHeight="335.0" prefWidth="445.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+      <ImageView fx:id="backhome" fitHeight="37.0" fitWidth="70.0" layoutX="77.0" layoutY="151.0" onMouseClicked="#backhome" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@exit.png" />
+         </image>
+      </ImageView>
+      
+         
+	</children>
+</Pane>

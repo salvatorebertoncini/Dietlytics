@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.InterfacciaMenu">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../diet.jpg" />
+         </image></ImageView>
+         
+      <Text layoutX="77.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dietlytics" wrappingWidth="219.0">
+      <font>
+            <Font size="48.0" />
+         </font>
+      </Text>
+      <MenuBar layoutX="77.0" layoutY="201.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="Dieta e Cibi">
+               <items>
+                  <MenuItem fx:id="openNewDiet" mnemonicParsing="false" onAction="#openNewDiet" text="Nuova Dieta" />
+              <MenuItem fx:id="history" mnemonicParsing="false" onAction="#history" onMenuValidation="#history" text="Storico" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="ricercacibo" mnemonicParsing="false" onAction="#ricercacibo" onMenuValidation="#ricercacibo" text="Ricerca Cibo" />
+               </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Impostazioni">
+            <items>
+              <MenuItem fx:id="openChangePersonal" mnemonicParsing="false" onAction="#openChangePersonal" text="Modifica Dati Personali" />
+                  <MenuItem fx:id="openChangeHabit" mnemonicParsing="false" onAction="#openChangeHabit" text="Modifica Dati Dieta" />
+                  <MenuItem fx:id="openDeleteUser" mnemonicParsing="false" onAction="#openDeleteUser" text="Elimina Utente" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="About">
+              <items>
+                <MenuItem fx:id="openabout" mnemonicParsing="false" onAction="#openabout" text="Info" />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <ImageView fx:id="logout" fitHeight="37.0" fitWidth="70.0" layoutX="77.0" layoutY="156.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@logout.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="welcometext" layoutX="121.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Benvenuto, ">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Text>
+      
+         
+	</children>
+</Pane>

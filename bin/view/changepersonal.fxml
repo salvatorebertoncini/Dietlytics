@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.InterfacciaModificaDatiPersonali">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../diet.jpg" />
+         </image></ImageView>
+         
+      <Text layoutX="77.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dietlytics" wrappingWidth="219.0">
+      <font>
+            <Font size="48.0" />
+         </font>
+      </Text>
+      <TextField fx:id="log" layoutX="77.0" layoutY="221.0" prefHeight="25.0" prefWidth="179.0" promptText="Username" />
+      <PasswordField fx:id="pass" layoutX="77.0" layoutY="259.0" prefHeight="25.0" prefWidth="179.0" promptText="Password" />
+      
+      <TextField fx:id="name" layoutX="398.0" layoutY="221.0" prefHeight="25.0" prefWidth="164.0" promptText="Nome" />
+      <TextField fx:id="surname" layoutX="577.0" layoutY="221.0" prefHeight="25.0" prefWidth="164.0" promptText="Cognome" />
+      <TextField fx:id="email" layoutX="398.0" layoutY="259.0" prefHeight="25.0" prefWidth="164.0" promptText="Email" />
+      <TextField fx:id="DDbirthday" layoutX="577.0" layoutY="259.0" prefHeight="25.0" prefWidth="32.0" promptText="DD" />
+      <TextField fx:id="MMbirthday" layoutX="627.0" layoutY="259.0" prefHeight="25.0" prefWidth="38.0" promptText="MM" />
+      <TextField fx:id="YYYYbirthday" layoutX="680.0" layoutY="259.0" prefHeight="25.0" prefWidth="61.0" promptText="YYYY" />      
+      <TextField fx:id="height" layoutX="398.0" layoutY="294.0" prefHeight="25.0" prefWidth="80.0" promptText="Altezza" />
+      <TextField fx:id="weight" layoutX="482.0" layoutY="294.0" prefHeight="25.0" prefWidth="80.0" promptText="Peso" />
+      
+      <ComboBox fx:id="sex" layoutX="578.0" layoutY="294.0" prefHeight="25.0" prefWidth="80.0" promptText="Sesso" visibleRowCount="2">
+        <items>
+          <FXCollections fx:factory="observableArrayList">
+          <String fx:value="M" />
+          <String fx:value="F" />
+          </FXCollections>
+        </items>
+      </ComboBox>
+      <Button fx:id="Change" layoutX="358.0" layoutY="375.0" mnemonicParsing="false" onAction="#Change" prefHeight="25.0" prefWidth="80.0" text="Modifica" />
+      <Text layoutX="669.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/" />
+      <Text layoutX="616.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="/" wrappingWidth="4.67578125" />
+      <ImageView fx:id="backhome" fitHeight="37.0" fitWidth="70.0" layoutX="77.0" layoutY="158.0" onMouseClicked="#backhome" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@exit.png" />
+         </image>
+      </ImageView>
+      <Text fx:id="message" fill="RED" layoutX="77.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" " visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Text>
+      
+   </children>
+</Pane>

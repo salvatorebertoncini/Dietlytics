@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.InterfacciaIniziale">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../diet.jpg" />
+         </image></ImageView>
+         
+      <Text layoutX="77.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dietlytics" wrappingWidth="219.0">
+      <font>
+            <Font size="48.0" />
+         </font>
+      </Text>
+      
+      <TextField fx:id="log" layoutX="77.0" layoutY="233.0" prefHeight="25.0" prefWidth="179.0" promptText="Username" />
+      <PasswordField fx:id="pass" layoutX="77.0" layoutY="264.0" prefHeight="25.0" prefWidth="179.0" promptText="Password" />
+      <Button fx:id="ChangeUser" layoutX="127.0" layoutY="300.0" mnemonicParsing="false" onAction="#ChangeUser" prefHeight="25.0" prefWidth="80.0" text="Modifica" />
+      <Text fx:id="loginerror" fill="RED" layoutX="77.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DATI ERRATI! RIDIGITA!" textAlignment="CENTER" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Text>
+      
+   </children>
+</Pane>

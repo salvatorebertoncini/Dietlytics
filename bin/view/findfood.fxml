@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.InterfacciaRicercaCibo">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../diet.jpg" />
+         </image></ImageView>
+         
+      <Text layoutX="77.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dietlytics" wrappingWidth="219.0">
+      <font>
+            <Font size="48.0" />
+         </font>
+      </Text>
+      <TextField fx:id="nomecercacibo" layoutX="326.0" layoutY="202.0" />
+      <Text layoutX="365.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inserisci Cibo" />
+      <Text layoutX="340.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inserisci quantita in gr." />
+      <TextField fx:id="grcercacibo" layoutX="326.0" layoutY="265.0" />
+      <TextArea fx:id="visualizzacibo" layoutX="84.0" layoutY="356.0" prefHeight="200.0" prefWidth="632.0" />
+      <Button fx:id="findfood" layoutX="377.0" layoutY="310.0" mnemonicParsing="false" onAction="#findfood" text="Cerca" />
+      <ImageView fx:id="backhome" fitHeight="37.0" fitWidth="70.0" layoutX="77.0" layoutY="154.0" onMouseClicked="#backhome" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@exit.png" />
+         </image>
+      </ImageView>
+      
+         
+	</children>
+</Pane>

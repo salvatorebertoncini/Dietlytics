@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.collections.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.InterfacciaNuovaDieta">
+   <children>
+      <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../diet.jpg" />
+         </image></ImageView>
+         
+      <Text layoutX="77.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dietlytics" wrappingWidth="219.0">
+      <font>
+            <Font size="48.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="backhome" fitHeight="37.0" fitWidth="70.0" layoutX="77.0" layoutY="158.0" onMouseClicked="#backhome" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@exit.png" />
+         </image>
+      </ImageView>
+      <ComboBox fx:id="allergy" layoutX="297.0" layoutY="245.0" prefHeight="25.0" prefWidth="179.0" promptText="Tipi Allergie/Intolleranze" visibleRowCount="5">
+          <items>
+          <FXCollections fx:factory="observableArrayList">
+	          <String fx:value="Nessuna Allergia/Intolleranza" />
+	          <String fx:value="Glutine" />
+	          <String fx:value="Nichel" />
+	          <String fx:value="Diabete" />
+	          <String fx:value="Lattosio" />
+          </FXCollections>
+        </items>
+      </ComboBox>
+      <ComboBox fx:id="diet" layoutX="297.0" layoutY="288.0" prefHeight="25.0" prefWidth="179.0" promptText="Tipo di Dieta" visibleRowCount="5">
+              <items>
+          <FXCollections fx:factory="observableArrayList">
+	          <String fx:value="Normale" />
+	          <String fx:value="Vegetariana" />
+	          <String fx:value="Vegana" />
+	          <String fx:value="Iperproteica" />
+	          <String fx:value="Dimagrante" />
+          </FXCollections>
+        </items>
+      </ComboBox>
+      <ComboBox fx:id="lifestyle" layoutX="297.0" layoutY="330.0" prefHeight="25.0" prefWidth="179.0" promptText="Stile di Vita adottato" visibleRowCount="5">
+             <items>
+          <FXCollections fx:factory="observableArrayList">
+	          <String fx:value="Sedentario" />
+	          <String fx:value="Poco Movimento" />
+	          <String fx:value="2-3 volte la settimana" />
+	          <String fx:value="Quasi tutti i giorni" />
+	          <String fx:value="Atleta Agonista" />
+          </FXCollections>
+        </items>
+      </ComboBox>
+      <Button fx:id="startNewDiet" layoutX="328.0" layoutY="400.0" mnemonicParsing="false" onAction="#startNewDiet" prefHeight="25.0" prefWidth="117.0" text="Inizia Nuova Dieta" />
+   </children>
+</Pane>
