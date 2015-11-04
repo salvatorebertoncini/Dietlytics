@@ -7,7 +7,7 @@ public class ComposizioneDieta {
 		
 		float x=(float)kcal/(float)1000;
 		System.out.println("kcal: "+kcal+" typediet: "+typediet+" allergia: "+allergia+" coeff: "+x+"\n");
-		String Dieta="DIETA PER: "+Dietlytics.welcome+"\n", Colazione="COLAZIONE:\n", PrimoSpuntino="PRIMOSPUNTINO:\n", Pranzo="PRANZO:\n", SecondoSpuntino="SECONDOSPUNTINO:\n", Cena="CENA:\n";
+		String Dieta="DIETA PER: "+Dietlytics.user.getWelcome()+"\n", Colazione="COLAZIONE:\n", PrimoSpuntino="PRIMOSPUNTINO:\n", Pranzo="PRANZO:\n", SecondoSpuntino="SECONDOSPUNTINO:\n", Cena="CENA:\n";
 		
 		switch(allergia){
 			//NESSUNA ALLERGIA

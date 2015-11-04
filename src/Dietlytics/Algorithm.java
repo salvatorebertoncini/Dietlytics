@@ -16,7 +16,7 @@ public class Algorithm {
 		String s, split;
 		int i; 
 	    try {
-			f=new FileReader("matrici/"+Dietlytics.id+".txt");
+			f=new FileReader("matrici/"+Dietlytics.user.getId()+".txt");
 		    b=new BufferedReader(f);
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -29,33 +29,33 @@ public class Algorithm {
 				split = s.toString();
 				String[] items = split.split(" ");
 				for(i=0;i<items.length;i++)
-					Dietlytics.abitudini[0][i]=Integer.parseInt(items[i]);
+					Dietlytics.user.setAbitudini(0, i, Integer.parseInt(items[i]));
 			System.out.println(s=b.readLine());
 				split = s.toString();
 				items = split.split(" ");
 				for(i=0;i<items.length;i++)
-					Dietlytics.abitudini[1][i]=Integer.parseInt(items[i]);
+					Dietlytics.user.setAbitudini(1, i, Integer.parseInt(items[i]));
 			System.out.println(s=b.readLine());
 				split = s.toString();
 				items = split.split(" ");
 				for(i=0;i<items.length;i++)
-					Dietlytics.abitudini[2][i]=Integer.parseInt(items[i]);
+					Dietlytics.user.setAbitudini(2, i, Integer.parseInt(items[i]));
 			System.out.println(s=b.readLine());
 				split = s.toString();
 				items = split.split(" ");
 				for(i=0;i<items.length;i++)
-					Dietlytics.abitudini[3][i]=Integer.parseInt(items[i]);
+					Dietlytics.user.setAbitudini(3, i, Integer.parseInt(items[i]));
 			System.out.println(s=b.readLine());
 				split = s.toString();
 				items = split.split(" ");
 				for(i=0;i<items.length;i++)
-					Dietlytics.abitudini[4][i]=Integer.parseInt(items[i]);
+					Dietlytics.user.setAbitudini(4, i, Integer.parseInt(items[i]));
 			
 			System.out.println("STAMPA VALORI DALLA MATRICE MOMENTANEA");
 			for(i=0;i<5;i++)
 			{
 				for(int j=0;j<3;j++)
-					System.out.print(Dietlytics.abitudini[i][j]+" ");
+					System.out.print(Dietlytics.user.getAbitudini(i,j)+" ");
 				System.out.println("");
 			}
 		} catch (IOException e) {
@@ -74,7 +74,7 @@ public class Algorithm {
 		int sex, height, weight, age;
 		float lifestyle;
 		StringBuilder l= new StringBuilder(""), s = new StringBuilder(""), h = new StringBuilder(""), w = new StringBuilder(""), a = new StringBuilder("");
-		boolean ok = Client.algorithminformations(Dietlytics.id, l, s, h, w, a);
+		boolean ok = Client.algorithminformations(Dietlytics.user.getId(), l, s, h, w, a);
 		
 		//prelevo l'anno di nascita dalla data di nascita
 		String split = a.toString();

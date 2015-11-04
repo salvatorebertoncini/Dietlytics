@@ -86,7 +86,7 @@ public class InterfacciaModificaDatiPersonali implements Initializable {
 			StringBuilder RegWeight = new StringBuilder("");
 			StringBuilder RegHeight = new StringBuilder("");
 			StringBuilder RegSex= new StringBuilder("");
-			if(Client.requestField(Dietlytics.id, RegNome, RegCognome, RegUsername, RegPassword, RegEmail, RegDataDiNascita, RegSex, RegHeight, RegWeight))
+			if(Client.requestField(Dietlytics.user.getId(), RegNome, RegCognome, RegUsername, RegPassword, RegEmail, RegDataDiNascita, RegSex, RegHeight, RegWeight))
 			{
 				name.setText(RegNome.toString());
 				surname.setText(RegCognome.toString());
@@ -127,7 +127,7 @@ public class InterfacciaModificaDatiPersonali implements Initializable {
 		System.out.println("SESSO: "+(String) sex.getValue()+" "+RegSex);
 		String RegWeight = weight.getText();
 		String RegHeight = height.getText();
-		Dietlytics.welcome=RegNome;
+		Dietlytics.user.setWelcome(RegNome);
 		
 		if(Integer.parseInt(YYYYbirthday.getText())<1900||Integer.parseInt(YYYYbirthday.getText())>2015){
 			System.out.println("ANNO DI NASCITA ERRATO, RIDIGITA");
@@ -148,8 +148,8 @@ public class InterfacciaModificaDatiPersonali implements Initializable {
 			ok=false;
 		}
 		
-		if(ok!=false && Client.requestChange(Dietlytics.id, RegNome, RegCognome, RegUsername, RegPassword, RegEmail, RegDataDiNascita, RegSex, RegWeight, RegHeight)){
-			Dietlytics.welcome=RegNome;
+		if(ok!=false && Client.requestChange(Dietlytics.user.getId(), RegNome, RegCognome, RegUsername, RegPassword, RegEmail, RegDataDiNascita, RegSex, RegWeight, RegHeight)){
+			Dietlytics.user.setWelcome(RegNome);
 			System.out.println("DATI MODIFICATI CON SUCCESSO!!");
 			message.setVisible(true);
 			message.setText("DATI MODIFICATI CON SUCCESSO!!");

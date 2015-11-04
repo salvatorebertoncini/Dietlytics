@@ -77,7 +77,7 @@ public class InterfacciaNuovaDieta {
 		}
 		
 		System.out.println(all+" "+dieta+" "+style);
-		ok= Client.newDiet(Dietlytics.id, style, dieta, RegDataInizioDieta, all);
+		ok= Client.newDiet(Dietlytics.user.getId(), style, dieta, RegDataInizioDieta, all);
 		if(ok){
 			try {
 				System.out.println("NUOVA DIETA SELEZIONATA CON SUCCESSO");

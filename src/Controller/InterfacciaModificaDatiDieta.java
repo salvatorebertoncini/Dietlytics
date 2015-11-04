@@ -51,7 +51,7 @@ public class InterfacciaModificaDatiDieta implements Initializable{
 	public void stampamatrix(int colazione1, int colazione2, int colazione3, int spuntino11, int spuntino12, int spuntino13, int pranzo1, int pranzo2, int pranzo3, int spuntino21, int spuntino22, int spuntino23, int cena1, int cena2, int cena3){
 		PrintWriter writer;
 		try {
-			writer = new PrintWriter("matrici/"+Dietlytics.id+".txt", "UTF-8");
+			writer = new PrintWriter("matrici/"+Dietlytics.user.getId()+".txt", "UTF-8");
 			writer.println(colazione1+" "+colazione2+" "+colazione3);
 			writer.println(spuntino11+" "+spuntino12+" "+spuntino13);
 			writer.println(pranzo1+" "+pranzo2+" "+pranzo3);
@@ -231,11 +231,11 @@ public class InterfacciaModificaDatiDieta implements Initializable{
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		if(Client.checkLife(Dietlytics.id)<8){
+		if(Client.checkLife(Dietlytics.user.getId())<8){
 			
 			Algorithm.readmatrix();
 			
-			switch (Dietlytics.abitudini[0][0]) {
+			switch (Dietlytics.user.getAbitudini(0, 0)) {
 		        case 1: col1.setValue("Acqua"); break;
 		        case 2: col1.setValue("Latte"); break;
 		        case 3: col1.setValue("Caffè"); break;
@@ -243,21 +243,21 @@ public class InterfacciaModificaDatiDieta implements Initializable{
 		        case 5: col1.setValue("Tè"); break;
 		        case 6: col1.setValue("Spremuta/Succo"); break;
 			}		
-			switch (Dietlytics.abitudini[0][1]) {
+			switch (Dietlytics.user.getAbitudini(0, 1)) {
 		        case 1: col2.setValue("Cereali"); break;
 		        case 2: col2.setValue("Frumento/Avena"); break;
 		        case 3: col2.setValue("Brioches"); break;
 		        case 4: col2.setValue("Cornetto/Sfoglia"); break;
 		        case 5: col2.setValue("Torta/Crostata"); break;
 			}
-			switch (Dietlytics.abitudini[0][2]) {
+			switch (Dietlytics.user.getAbitudini(0, 2)) {
 		        case 1: col3.setValue("Cereali"); break;
 		        case 2: col3.setValue("Frumento/Avena"); break;
 		        case 3: col3.setValue("Brioches"); break;
 		        case 4: col3.setValue("Cornetto/Sfoglia"); break;
 		        case 5: col3.setValue("Torta/Crostata"); break;
 			}
-			switch (Dietlytics.abitudini[1][0]) {
+			switch (Dietlytics.user.getAbitudini(1, 0)) {
 		        case 1: spun11.setValue("Acqua"); break;
 		        case 2: spun11.setValue("Coca-Cola"); break;
 		        case 3: spun11.setValue("Vino"); break;
@@ -266,7 +266,7 @@ public class InterfacciaModificaDatiDieta implements Initializable{
 		        case 6: spun11.setValue("Sprite"); break;
 		        case 7: spun11.setValue("Spremuta/Succo"); break;
 			}
-			switch (Dietlytics.abitudini[1][1]) {
+			switch (Dietlytics.user.getAbitudini(1,1)) {
 		        case 1: spun12.setValue("Crackers"); break;
 		        case 2: spun12.setValue("Tramezzino"); break;
 		        case 3: spun12.setValue("Biscotti/grissini"); break;
@@ -274,7 +274,7 @@ public class InterfacciaModificaDatiDieta implements Initializable{
 		        case 5: spun12.setValue("Yogurt"); break;
 		        case 6: spun12.setValue("Frutta"); break;
 			}
-			switch (Dietlytics.abitudini[1][2]) {
+			switch (Dietlytics.user.getAbitudini(1,2)) {
 		        case 1: spun13.setValue("Crackers"); break;
 		        case 2: spun13.setValue("Tramezzino"); break;
 		        case 3: spun13.setValue("Biscotti/grissini"); break;
@@ -282,7 +282,7 @@ public class InterfacciaModificaDatiDieta implements Initializable{
 		        case 5: spun13.setValue("Yogurt"); break;
 		        case 6: spun13.setValue("Frutta"); break;
 			}
-			switch (Dietlytics.abitudini[2][0]) {
+			switch (Dietlytics.user.getAbitudini(2, 0)) {
 		        case 1: pran1.setValue("Acqua"); break;
 		        case 2: pran1.setValue("Coca-Cola"); break;
 		        case 3: pran1.setValue("Vino"); break;
@@ -291,21 +291,21 @@ public class InterfacciaModificaDatiDieta implements Initializable{
 		        case 6: pran1.setValue("Sprite"); break;
 		        case 7: pran1.setValue("Spremuta/Succo"); break;
 			}
-			switch (Dietlytics.abitudini[2][1]) {
+			switch (Dietlytics.user.getAbitudini(2,1)) {
 		        case 1: pran2.setValue("Primo"); break;
 		        case 2: pran2.setValue("Secondo"); break;
 		        case 3: pran2.setValue("Insalata"); break;
 		        case 4: pran2.setValue("Contorno"); break;
 		        case 5: pran2.setValue("Panino"); break;
 			}
-			switch (Dietlytics.abitudini[2][2]) {
+			switch (Dietlytics.user.getAbitudini(2,2)) {
 		        case 1: pran3.setValue("Primo"); break;
 		        case 2: pran3.setValue("Secondo"); break;
 		        case 3: pran3.setValue("Insalata"); break;
 		        case 4: pran3.setValue("Contorno"); break;
 		        case 5: pran3.setValue("Panino"); break;
 			}
-			switch (Dietlytics.abitudini[3][0]) {
+			switch (Dietlytics.user.getAbitudini(3, 0)) {
 		        case 1: spun21.setValue("Acqua"); break;
 		        case 2: spun21.setValue("Coca-Cola"); break;
 		        case 3: spun21.setValue("Vino"); break;
@@ -314,19 +314,19 @@ public class InterfacciaModificaDatiDieta implements Initializable{
 		        case 6: spun21.setValue("Sprite"); break;
 		        case 7: spun21.setValue("Spremuta/Succo"); break;
 			}
-			switch (Dietlytics.abitudini[3][1]) {
+			switch (Dietlytics.user.getAbitudini(3,1)) {
 		        case 1: spun22.setValue("Panino"); break;
 		        case 2: spun22.setValue("Torta/crostata"); break;
 		        case 3: spun22.setValue("Cracker"); break;
 		        case 4: spun22.setValue("Frutta/frullato"); break;
 			}
-			switch (Dietlytics.abitudini[3][2]) {
+			switch (Dietlytics.user.getAbitudini(3,2)) {
 		        case 1: spun23.setValue("Panino"); break;
 		        case 2: spun23.setValue("Torta/crostata"); break;
 		        case 3: spun23.setValue("Cracker"); break;
 		        case 4: spun23.setValue("Frutta/frullato"); break;
 			}
-			switch (Dietlytics.abitudini[4][0]) {
+			switch (Dietlytics.user.getAbitudini(4, 0)) {
 		        case 1: cen1.setValue("Acqua"); break;
 		        case 2: cen1.setValue("Coca-Cola"); break;
 		        case 3: cen1.setValue("Vino"); break;
@@ -335,14 +335,14 @@ public class InterfacciaModificaDatiDieta implements Initializable{
 		        case 6: cen1.setValue("Sprite"); break;
 		        case 7: cen1.setValue("Spremuta/Succo"); break;
 			}
-			switch (Dietlytics.abitudini[4][1]) {
+			switch (Dietlytics.user.getAbitudini(4,1)) {
 		        case 1: cen2.setValue("Primo"); break;
 		        case 2: cen2.setValue("Secondo"); break;
 		        case 3: cen2.setValue("Insalata"); break;
 		        case 4: cen2.setValue("Contorno"); break;
 		        case 5: cen2.setValue("Panino"); break;
 			}
-			switch (Dietlytics.abitudini[4][2]) {
+			switch (Dietlytics.user.getAbitudini(4,2)) {
 		        case 1: cen3.setValue("Primo"); break;
 		        case 2: cen3.setValue("Secondo"); break;
 		        case 3: cen3.setValue("Insalata"); break;

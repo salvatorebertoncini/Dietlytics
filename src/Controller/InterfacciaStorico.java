@@ -107,7 +107,7 @@ public class InterfacciaStorico  implements Initializable {
 		            String totdiet = Client.findDiet(passid);
 		            System.out.println("Visualizza dieta: "+passdata+" con ID: "+passid);
 		            visualizzadieta.setText(passdata+"\n"+totdiet);
-		            Dietlytics.dietxml=totdiet;
+		            Dietlytics.user.setDietxml(totdiet);
 		        }
 		    });
 			a+=25;
@@ -117,7 +117,7 @@ public class InterfacciaStorico  implements Initializable {
 	}
 	
 	public void PrintXML(){
-		System.out.println("STAMPA DIETA DA BOTTONE...\n"+Dietlytics.dietxml);
+		System.out.println("STAMPA DIETA DA BOTTONE...\n"+Dietlytics.user.getDietxml());
 		
 	}
 	

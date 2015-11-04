@@ -17,7 +17,7 @@ public class InterfacciaMenu implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		welcometext.setText("Benvenuto, "+Dietlytics.welcome+"!");
+		welcometext.setText("Benvenuto, "+Dietlytics.user.getWelcome()+"!");
 		
 	}
 	

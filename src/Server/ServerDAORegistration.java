@@ -8,7 +8,7 @@ import com.mysql.jdbc.ResultSet;
 import DB.DB;
 
 public class ServerDAORegistration {
-   // REGISTRAZIONE
+   //REGISTRAZIONE
    public static boolean RegistrationCheck(String Nome,String Cognome,String Username,String Password,String Email,String Nascita, int Sex,String Altezza, String Peso)
    {
 	   String query= "INSERT INTO user (id_user,name_user,surname_user,username_user,password_user,email_user,date_user"
@@ -27,7 +27,7 @@ public class ServerDAORegistration {
 		   DB.cmd.executeQuery(query);
 		   ResultSet rs = (ResultSet) DB.cmd.getResultSet();
 		   while(rs.next()){
-			   Dietlytics.id=rs.getInt("id_user");
+			   Dietlytics.user.setId(rs.getInt("id_user"));
 		   }
 	   } catch (SQLException e){
 		   e.printStackTrace();
@@ -286,7 +286,7 @@ public static boolean requestField(int id, StringBuilder regNome, StringBuilder 
 	}
 
 	public static void initializeHistoryButton(StringBuilder num, StringBuilder name, StringBuilder id) {
-		String query = "SELECT storico.id_storico, storico.startdiet_storico, diet.dieta_diet FROM storico, diet WHERE storico.id_diet = diet.id_diet AND id_user="+Dietlytics.id, x="", k="";
+		String query = "SELECT storico.id_storico, storico.startdiet_storico, diet.dieta_diet FROM storico, diet WHERE storico.id_diet = diet.id_diet AND id_user="+Dietlytics.user.getId(), x="", k="";
 		int d=0;
 		System.out.println("CERCO NEL DB SE CI SONO DIETE NELLO STORICO INIZIATE QUEL GIORNO");
 		try{

@@ -13,7 +13,7 @@ import javafx.scene.input.MouseEvent;
 
 public class InterfacciaEliminaUtente {
 	
-	static int id = Dietlytics.id;
+	static int id = Dietlytics.user.getId();
 	
 	//Immagine "BACK"
 	@FXML
@@ -34,8 +34,8 @@ public class InterfacciaEliminaUtente {
 	@FXML
 	public void removeUser(ActionEvent Event){
 		boolean ok = true;
-		System.out.println(Dietlytics.id);
-		ok=Client.requestDeleteUser(Dietlytics.id);
+		System.out.println(Dietlytics.user.getId());
+		ok=Client.requestDeleteUser(Dietlytics.user.getId());
 		if(ok){
 			System.out.println("UTENTE ELIMINATO CON SUCCESSO");
 			try {
