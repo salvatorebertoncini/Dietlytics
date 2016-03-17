@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.collections.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.InterfacciaModificaDatiDieta">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InterfacciaModificaDatiDieta">
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../diet.jpg" />
+            <Image url="@diet.jpg" />
          </image></ImageView>
          
       <Text layoutX="77.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dietlytics" wrappingWidth="219.0">
@@ -26,191 +26,78 @@
          </image>
       </ImageView>
       
-      <Text layoutX="115.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Colazione" />
-      <ComboBox fx:id="col1" layoutX="234.0" layoutY="224.0" promptText="Bevanda" visibleRowCount="6">
-         <items>
-            <FXCollections fx:factory="observableArrayList">
-               <String fx:value="Acqua" />
-               <String fx:value="Latte" />
-               <String fx:value="Caffè" />
-               <String fx:value="Cappuccino" />
-               <String fx:value="Tè" />
-               <String fx:value="Spremuta/Succo" />
-            </FXCollections>
-         </items>
-      </ComboBox>
-      <ComboBox fx:id="col2" layoutX="395.0" layoutY="224.0" promptText="Colazione 1" visibleRowCount="5">
-		<items>
-          <FXCollections fx:factory="observableArrayList">
-	          <String fx:value="Cereali" />
-	          <String fx:value="Frumento/Avena" />
-	          <String fx:value="Brioches" />
-	          <String fx:value="Cornetto/Sfoglia" />
-	          <String fx:value="Torta/Crostata" />
-          </FXCollections>
-        </items>
-      </ComboBox>
-      <ComboBox fx:id="col3" layoutX="564.0" layoutY="224.0" promptText="Colazione 2" visibleRowCount="5">
-         <items>
-          <FXCollections fx:factory="observableArrayList">
-	          <String fx:value="Cereali" />
-	          <String fx:value="Frumento/Avena" />
-	          <String fx:value="Brioches" />
-	          <String fx:value="Cornetto/Sfoglia" />
-	          <String fx:value="Torta/Crostata" />
-          </FXCollections>
-        </items>
-      </ComboBox>
+      <Text layoutX="101.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Colazione" />
       
-      <Text layoutX="110.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1° Spuntino" />
-      <ComboBox fx:id="spun11" layoutX="234.0" layoutY="255.0" promptText="Bevanda" visibleRowCount="7">
-         <items>
-            <FXCollections fx:factory="observableArrayList">
-               <String fx:value="Acqua" />
-               <String fx:value="Coca-Cola" />
-               <String fx:value="Vino" />
-               <String fx:value="Birra" />
-               <String fx:value="Aranciata" />
-               <String fx:value="Sprite" />
-               <String fx:value="Spremuta/Succo" />
-            </FXCollections>
-         </items>
-      </ComboBox>
-      <ComboBox fx:id="spun12" layoutX="395.0" layoutY="255.0" promptText="1° Spuntino 1" visibleRowCount="6">
-         <items>
-            <FXCollections fx:factory="observableArrayList">
-	          <String fx:value="Crackers" />
-	          <String fx:value="Tramezzino" />
-	          <String fx:value="Biscotti/grissini" />
-	          <String fx:value="Merendina" />
-	          <String fx:value="Yogurt" />
-	          <String fx:value="Frutta" />
-          </FXCollections>
-       	</items>
-       	</ComboBox>
-      <ComboBox fx:id="spun13" layoutX="564.0" layoutY="255.0" promptText="1° Spuntino 2" visibleRowCount="6">
-      <items>
-          <FXCollections fx:factory="observableArrayList">
-	          <String fx:value="Crackers" />
-	          <String fx:value="Tramezzino" />
-	          <String fx:value="Biscotti/grissini" />
-	          <String fx:value="Merendina" />
-	          <String fx:value="Yogurt" />
-	          <String fx:value="Frutta" />
-          </FXCollections>
-       	</items>
-       	</ComboBox>
-      <Text layoutX="123.0" layoutY="303.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pranzo" />
-      <ComboBox fx:id="pran1" layoutX="234.0" layoutY="286.0" promptText="Bevanda" visibleRowCount="7">
-         <items>
-            <FXCollections fx:factory="observableArrayList">
-               <String fx:value="Acqua" />
-               <String fx:value="Coca-Cola" />
-               <String fx:value="Vino" />
-               <String fx:value="Birra" />
-               <String fx:value="Aranciata" />
-               <String fx:value="Sprite" />
-               <String fx:value="Spremuta/Succo" />
-            </FXCollections>
-         </items>
-      </ComboBox>
-      <ComboBox fx:id="pran2" layoutX="395.0" layoutY="286.0" promptText="Pranzo 1" visibleRowCount="5">
-        <items>
-          <FXCollections fx:factory="observableArrayList">
-	          <String fx:value="Primo" />
-	          <String fx:value="Secondo" />
-	          <String fx:value="Insalata" />
-	          <String fx:value="Contorno" />
-	          <String fx:value="Panino" />
-          </FXCollections>
-       	</items>
-       	</ComboBox>
-      <ComboBox fx:id="pran3" layoutX="564.0" layoutY="286.0" promptText="Pranzo 2" visibleRowCount="5">
-      	<items>
-          <FXCollections fx:factory="observableArrayList">
-	          <String fx:value="Primo" />
-	          <String fx:value="Secondo" />
-	          <String fx:value="Insalata" />
-	          <String fx:value="Contorno" />
-	          <String fx:value="Panino" />
-          </FXCollections>
-       	</items>
-       	</ComboBox>
-      <Text layoutX="110.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2° Spuntino" />
-      <ComboBox fx:id="spun21" layoutX="234.0" layoutY="317.0" promptText="Bevanda" visibleRowCount="6">
-         <items>
-            <FXCollections fx:factory="observableArrayList">
-               <String fx:value="Acqua" />
-               <String fx:value="Coca-Cola" />
-               <String fx:value="Caffè" />
-               <String fx:value="Cappuccino" />
-               <String fx:value="Tè" />
-               <String fx:value="Spremuta/Succo" />
-            </FXCollections>
-         </items>
-      </ComboBox>
-      <ComboBox fx:id="spun22" layoutX="395.0" layoutY="317.0" promptText="2° Spuntino 1" visibleRowCount="4">
-      <items>
-          <FXCollections fx:factory="observableArrayList">
-	          <String fx:value="Panino" />
-	          <String fx:value="Torta/crostata" />
-	          <String fx:value="Cracker" />
-	          <String fx:value="Frutta/frullato" />
-	      </FXCollections>
-       	</items>
-       	</ComboBox>
-      <ComboBox fx:id="spun23" layoutX="564.0" layoutY="317.0" promptText="2° Spuntino 2" visibleRowCount="5">
-      <items>
-          <FXCollections fx:factory="observableArrayList">
-	          <String fx:value="Panino" />
-	          <String fx:value="Torta/crostata" />
-	          <String fx:value="Cracker" />
-	          <String fx:value="Frutta/frullato" />
-	      </FXCollections>
-       	</items>
-       	</ComboBox>
-      <Text layoutX="127.0" layoutY="365.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cena" />
-      <ComboBox fx:id="cen1" layoutX="234.0" layoutY="348.0" promptText="Bevanda" visibleRowCount="6">
-         <items>
-            <FXCollections fx:factory="observableArrayList">
-               <String fx:value="Acqua" />
-               <String fx:value="Coca-Cola" />
-               <String fx:value="Vino" />
-               <String fx:value="Birra" />
-               <String fx:value="Aranciata" />
-               <String fx:value="Sprite" />
-               <String fx:value="Spremuta/Succo" />
-            </FXCollections>
-         </items>
-      </ComboBox>
-      <ComboBox fx:id="cen2" layoutX="395.0" layoutY="348.0" promptText="Cena 1" visibleRowCount="5">
-		<items>
-          <FXCollections fx:factory="observableArrayList">
-	          <String fx:value="Primo" />
-	          <String fx:value="Secondo" />
-	          <String fx:value="Insalata" />
-	          <String fx:value="Contorno" />
-	          <String fx:value="Panino" />
-          </FXCollections>
-       	</items>
-       	</ComboBox>
-      <ComboBox fx:id="cen3" layoutX="564.0" layoutY="348.0" promptText="Cena 2" visibleRowCount="5">
-		<items>
-          <FXCollections fx:factory="observableArrayList">
-	          <String fx:value="Primo" />
-	          <String fx:value="Secondo" />
-	          <String fx:value="Insalata" />
-	          <String fx:value="Contorno" />
-	          <String fx:value="Panino" />
-          </FXCollections>
-       	</items>
-       	</ComboBox>
-      <Button fx:id="savechangehabit" layoutX="378.0" layoutY="413.0" mnemonicParsing="false" onAction="#savechangehabit" text="Salva" />
+      <Text layoutX="96.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1° Spuntino" />
+      <Text layoutX="109.0" layoutY="323.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pranzo" />
+      <Text layoutX="96.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2° Spuntino" />
+      <Text layoutX="113.0" layoutY="409.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cena" />
+      <Button fx:id="savechangehabit" layoutX="378.0" layoutY="454.0" mnemonicParsing="false" onAction="#savechangehabit" text="Salva" />
       <Text fill="RED" layoutX="309.0" layoutY="479.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DATI SALVATI CON SUCCESSO" visible="false">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Text>
+      <ComboBox fx:id="col1" layoutX="207.0" layoutY="221.0" prefHeight="25.0" prefWidth="135.0" promptText="Colazione 1" visibleRowCount="4">
+         <items>
+         </items>
+      </ComboBox>
+      <ComboBox fx:id="col2" layoutX="374.0" layoutY="221.0" prefHeight="25.0" prefWidth="135.0" promptText="Colazione 2" visibleRowCount="4">
+         <items>
+         </items>
+      </ComboBox>
+      <ComboBox fx:id="col3" layoutX="545.0" layoutY="221.0" prefHeight="25.0" prefWidth="135.0" promptText="Colazione 3" visibleRowCount="4">
+         <items>
+         </items>
+      </ComboBox>
+      <ComboBox fx:id="spun11" layoutX="207.0" layoutY="263.0" prefHeight="25.0" prefWidth="135.0" promptText="1° Spuntino 1" visibleRowCount="4">
+         <items>
+         </items>
+      </ComboBox>
+      <ComboBox fx:id="spun12" layoutX="374.0" layoutY="263.0" prefHeight="25.0" prefWidth="135.0" promptText="1° Spuntino 2" visibleRowCount="4">
+         <items>
+         </items>
+      </ComboBox>
+      <ComboBox fx:id="spun13" layoutX="545.0" layoutY="263.0" prefHeight="25.0" prefWidth="135.0" promptText="1° Spuntino 3" visibleRowCount="4">
+         <items>
+         </items>
+      </ComboBox>
+      <ComboBox fx:id="pran1" layoutX="207.0" layoutY="306.0" prefHeight="25.0" prefWidth="135.0" promptText="Pranzo 1" visibleRowCount="4">
+         <items>
+         </items>
+      </ComboBox>
+      <ComboBox fx:id="pran2" layoutX="374.0" layoutY="306.0" prefHeight="25.0" prefWidth="135.0" promptText="Pranzo 2" visibleRowCount="4">
+         <items>
+         </items>
+      </ComboBox>
+      <ComboBox fx:id="pran3" layoutX="545.0" layoutY="306.0" prefHeight="25.0" prefWidth="135.0" promptText="Pranzo 3" visibleRowCount="4">
+         <items>
+         </items>
+      </ComboBox>
+      <ComboBox fx:id="spun21" layoutX="207.0" layoutY="350.0" prefHeight="25.0" prefWidth="135.0" promptText="2° Spuntino 1" visibleRowCount="4">
+         <items>
+         </items>
+      </ComboBox>
+      <ComboBox fx:id="spun22" layoutX="374.0" layoutY="350.0" prefHeight="25.0" prefWidth="135.0" promptText="2° Spuntino 2" visibleRowCount="4">
+         <items>
+         </items>
+      </ComboBox>
+      <ComboBox fx:id="spun23" layoutX="545.0" layoutY="350.0" prefHeight="25.0" prefWidth="135.0" promptText="2° Spuntino 3" visibleRowCount="4">
+         <items>
+         </items>
+      </ComboBox>
+      <ComboBox fx:id="cen1" layoutX="207.0" layoutY="392.0" prefHeight="25.0" prefWidth="135.0" promptText="Cena 1" visibleRowCount="4">
+         <items>
+         </items>
+      </ComboBox>
+      <ComboBox fx:id="cen2" layoutX="374.0" layoutY="392.0" prefHeight="25.0" prefWidth="135.0" promptText="Cena 2" visibleRowCount="4">
+         <items>
+         </items>
+      </ComboBox>
+      <ComboBox fx:id="cen3" layoutX="545.0" layoutY="392.0" prefHeight="25.0" prefWidth="135.0" promptText="Cena 3" visibleRowCount="4">
+         <items>
+         </items>
+      </ComboBox>
       
          
 	</children>

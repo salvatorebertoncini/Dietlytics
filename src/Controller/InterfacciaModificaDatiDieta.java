@@ -1,15 +1,15 @@
-package Controller;
+package controller;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import Client.Client;
-import Dietlytics.Algorithm;
-import Dietlytics.Dietlytics;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,336 +19,179 @@ import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 
-public class InterfacciaModificaDatiDieta implements Initializable{
-	
+
+import client.*;
+import model.*;
+import comunicazione.*;
+import dieta.*;
+
+
+public class InterfacciaModificaDatiDieta{
+
+	ObjectOutputStream versoServer;
+	ObjectInputStream dalServer;
+	Scene scene;
+
 	@FXML
-	ComboBox spun11, spun12, spun13, spun21, spun22, spun23;
+	ComboBox spun11, spun12, spun13, spun21, spun22, spun23,col1, col2, col3, cen1, cen2, cen3, pran1, pran2, pran3;
+
+	ArrayList<MFood> elencoAllCibi;
 	
-	@FXML
-	ComboBox col1, col2, col3, cen1, cen2, cen3, pran1, pran2, pran3;
-	
-	@FXML
-	public void backhome(MouseEvent Event){
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("../view/menu.fxml"));
-			Scene scene1 = new Scene(root);
-        	Dietlytics.Stage.setScene(scene1);
-        	Dietlytics.Stage.show();
-        	System.out.println("BACK TO MENU HOMEPAGE");
-		} catch (IOException ev) {
-			// TODO Auto-generated catch block
-			ev.printStackTrace();
-		}
-	}
-	
-	//LEGGI ABITUDINI
-	public void leggimatrix(){
+	public void initializePage(ObjectOutputStream versoServer, ObjectInputStream dalServer) {
+		this.dalServer=dalServer;
+		this.versoServer=versoServer;
 		
+		ArrayList<MFood> elencoAbitudini = new ArrayList<MFood>();
+		Richiesta richiesta = new Richiesta(TipiRichieste.AbitudiniUtente, null);
+		try {
+			versoServer.writeObject(richiesta);
+			Risposta risposta = (Risposta) dalServer.readObject();
+
+			elencoAllCibi = ((MUser) risposta.Oggetto).getElencoCibi();
+			for (int k = 0; k < ((MUser) risposta.Oggetto).getElencoCibi().size(); k++) {
+				spun11.getItems().addAll(((MUser) risposta.Oggetto).getElencoCibi().get(k).getName());
+				spun12.getItems().addAll(((MUser) risposta.Oggetto).getElencoCibi().get(k).getName());
+				spun13.getItems().addAll(((MUser) risposta.Oggetto).getElencoCibi().get(k).getName());
+				spun21.getItems().addAll(((MUser) risposta.Oggetto).getElencoCibi().get(k).getName());
+				spun22.getItems().addAll(((MUser) risposta.Oggetto).getElencoCibi().get(k).getName());
+				spun23.getItems().addAll(((MUser) risposta.Oggetto).getElencoCibi().get(k).getName());
+				col1.getItems().addAll(((MUser) risposta.Oggetto).getElencoCibi().get(k).getName());
+				col2.getItems().addAll(((MUser) risposta.Oggetto).getElencoCibi().get(k).getName());
+				col3.getItems().addAll(((MUser) risposta.Oggetto).getElencoCibi().get(k).getName());
+				cen1.getItems().addAll(((MUser) risposta.Oggetto).getElencoCibi().get(k).getName());
+				cen2.getItems().addAll(((MUser) risposta.Oggetto).getElencoCibi().get(k).getName());
+				cen3.getItems().addAll(((MUser) risposta.Oggetto).getElencoCibi().get(k).getName());
+				pran1.getItems().addAll(((MUser) risposta.Oggetto).getElencoCibi().get(k).getName());
+				pran2.getItems().addAll(((MUser) risposta.Oggetto).getElencoCibi().get(k).getName());
+				pran3.getItems().addAll(((MUser) risposta.Oggetto).getElencoCibi().get(k).getName());
+			}
+			if(TipiRisposte.RichiestaAbitudiniSuccesso==risposta.Tipo)
+			{
+				
+				for (int i = 0; i < 5; i++) {
+	
+					for (int j = 0; j < 3; j++) {
+						String nomeProdotto = prendoProdottoDaId(((MUser) risposta.Oggetto).getAbitudini(i, j));
+						MFood prodotto = new MFood(nomeProdotto);
+						elencoAbitudini.add(prodotto);
+					}
+				}
+				col1.setValue(elencoAbitudini.get(0).getName());
+				col2.setValue(elencoAbitudini.get(1).getName());
+				col3.setValue(elencoAbitudini.get(2).getName());
+				spun11.setValue(elencoAbitudini.get(3).getName());
+				spun12.setValue(elencoAbitudini.get(4).getName());
+				spun13.setValue(elencoAbitudini.get(5).getName());
+				pran1.setValue(elencoAbitudini.get(6).getName());
+				pran2.setValue(elencoAbitudini.get(7).getName());
+				pran3.setValue(elencoAbitudini.get(8).getName());
+				spun21.setValue(elencoAbitudini.get(9).getName());
+				spun22.setValue(elencoAbitudini.get(10).getName());
+				spun23.setValue(elencoAbitudini.get(11).getName());
+				cen1.setValue(elencoAbitudini.get(12).getName());
+				cen2.setValue(elencoAbitudini.get(13).getName());
+				cen3.setValue(elencoAbitudini.get(14).getName());
+			}
+
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
 	}
 	
-	
-	//STAMPA MATRICE SU FILE TXT
-	public void stampamatrix(int colazione1, int colazione2, int colazione3, int spuntino11, int spuntino12, int spuntino13, int pranzo1, int pranzo2, int pranzo3, int spuntino21, int spuntino22, int spuntino23, int cena1, int cena2, int cena3){
-		PrintWriter writer;
+	// Immagine "BACK"
+		@FXML
+		public void backhome(MouseEvent Event) {
+			try{
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/menu.fxml"));
+				scene = new Scene(loader.load());
+				Client.Stage.setScene(scene);
+				Client.Stage.show();
+				InterfacciaMenu controller = loader.<InterfacciaMenu>getController();
+				controller.initializePage(versoServer,dalServer);
+			} catch(Exception exc) {
+				System.out.println("Errore-InitialieDefaultCartController: " + exc.getMessage());
+				exc.printStackTrace();
+			}
+		}
+
+	// STAMPA MATRICE SU FILE TXT
+	public void stampamatrix(int colazione1, int colazione2, int colazione3, int spuntino11, int spuntino12,
+			int spuntino13, int pranzo1, int pranzo2, int pranzo3, int spuntino21, int spuntino22, int spuntino23,
+			int cena1, int cena2, int cena3) {
+		MUser utenteTemp = new MUser();
+		utenteTemp.setAbitudini(0, 0, colazione1);
+		utenteTemp.setAbitudini(0, 1, colazione2);
+		utenteTemp.setAbitudini(0, 2, colazione3);
+		utenteTemp.setAbitudini(1, 0, spuntino11);
+		utenteTemp.setAbitudini(1, 1, spuntino12);
+		utenteTemp.setAbitudini(1, 2, spuntino13);
+		utenteTemp.setAbitudini(2, 0, pranzo1);
+		utenteTemp.setAbitudini(2, 1, pranzo2);
+		utenteTemp.setAbitudini(2, 2, pranzo3);
+		utenteTemp.setAbitudini(3, 0, spuntino21);
+		utenteTemp.setAbitudini(3, 1, spuntino22);
+		utenteTemp.setAbitudini(3, 2, spuntino23);
+		utenteTemp.setAbitudini(4, 0, cena1);
+		utenteTemp.setAbitudini(4, 1, cena2);
+		utenteTemp.setAbitudini(4, 2, cena3);
+		
+		Richiesta richiesta = new Richiesta(TipiRichieste.InformazioniUtenteLoggato, utenteTemp);
 		try {
-			writer = new PrintWriter("matrici/"+Dietlytics.user.getId()+".txt", "UTF-8");
-			writer.println(colazione1+" "+colazione2+" "+colazione3);
-			writer.println(spuntino11+" "+spuntino12+" "+spuntino13);
-			writer.println(pranzo1+" "+pranzo2+" "+pranzo3);
-			writer.println(spuntino21+" "+spuntino22+" "+spuntino23);
-			writer.println(cena1+" "+cena2+" "+cena3);
-			writer.close();
-			System.out.println("stampa matrice avvenuta");
-		} catch (FileNotFoundException | UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
+			versoServer.writeObject(richiesta);
+			Risposta risposta = (Risposta) dalServer.readObject();
+			System.out.println(" matrice modificata con successo");
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	//Pulsante "SALVA ABITUDINI"
+
+	public String prendoProdottoDaId(int id) {
+		String nomeProdotto = null;
+
+		for (int z = 0; z < elencoAllCibi.size(); z++) {
+			if (elencoAllCibi.get(z).getId() == id) {
+				nomeProdotto = elencoAllCibi.get(z).getName();
+			}
+		}
+		return nomeProdotto;
+	}
+
+	public int prendoIdDaProdotto(String nomeCibo) {
+		int idCibo = 0;
+
+		for (int z = 0; z < elencoAllCibi.size(); z++) {
+			if (elencoAllCibi.get(z).getName().equals(nomeCibo)) {
+				idCibo = elencoAllCibi.get(z).getId();
+			}
+		}
+		return idCibo;
+	}
+
+	// Pulsante "SALVA ABITUDINI"
 	@FXML
-	public void savechangehabit(ActionEvent Event){
-		boolean ok = true;
-		int colazione1, colazione2, colazione3, spuntino11, spuntino12, spuntino13, spuntino21, spuntino22, spuntino23, pranzo1, pranzo2, pranzo3, cena1, cena2, cena3;
-		
-		
-		//ACQUISISCI NUOVE ABITUDINI
-		switch ((String)col1.getValue()) {
-	        case "Acqua":  colazione1 = 1; break;
-	        case "Latte":  colazione1 = 2; break;
-	        case "Caffè":  colazione1 = 3; break;
-	        case "Cappuccino":  colazione1 = 4; break;
-	        case "Tè":  colazione1 = 5; break;
-	        case "Spremuta/Succo":  colazione1 = 6; break;
-	        default: colazione1= 0; break;
-		}		
-		switch ((String)col2.getValue()) {
-	        case "Cereali":  colazione2 = 1; break;
-	        case "Frumento/Avena":  colazione2 = 2; break;
-	        case "Brioches":  colazione2 = 3; break;
-	        case "Cornetto/Sfoglia":  colazione2 = 4; break;
-	        case "Torta/Crostata":  colazione2 = 5; break;
-	        default: colazione2= 0; break;
-		}
-		switch ((String)col3.getValue()) {
-	        case "Cereali":  colazione3 = 1; break;
-	        case "Frumento/Avena":  colazione3 = 2; break;
-	        case "Brioches":  colazione3 = 3; break;
-	        case "Cornetto/Sfoglia":  colazione3 = 4; break;
-	        case "Torta/Crostata":  colazione3 = 5; break;
-	        default: colazione3= 0; break;
-		}
-		switch ((String)spun11.getValue()) {
-	        case "Acqua":  spuntino11 = 1; break;
-	        case "Coca-Cola":  spuntino11 = 2; break;
-	        case "Vino":  spuntino11 = 3; break;
-	        case "Birra":  spuntino11 = 4; break;
-	        case "Aranciata":  spuntino11 = 5; break;
-	        case "Sprite":  spuntino11 = 6; break;
-	        case "Spremuta/Succo":  spuntino11 = 7; break;
-	        default: spuntino11= 0; break;
-		}
-		switch ((String)spun12.getValue()) {
-	        case "Crackers":  spuntino12 = 1; break;
-	        case "Tramezzino":  spuntino12 = 2; break;
-	        case "Biscotti/grissini":  spuntino12 = 3; break;
-	        case "Merendina":  spuntino12 = 4; break;
-	        case "Yogurt":  spuntino12 = 5; break;
-	        case "Frutta":  spuntino12 = 6; break;
-	        default: spuntino12= 0; break;
-		}
-		switch ((String)spun13.getValue()) {
-	        case "Crackers":  spuntino13 = 1; break;
-	        case "Tramezzino":  spuntino13 = 2; break;
-	        case "Biscotti/grissini":  spuntino13 = 3; break;
-	        case "Merendina":  spuntino13 = 4; break;
-	        case "Yogurt":  spuntino13 = 5; break;
-	        case "Frutta":  spuntino13 = 6; break;
-	        default: spuntino13= 0; break;
-		}
-		switch ((String)pran1.getValue()) {
-	        case "Acqua":  pranzo1 = 1; break;
-	        case "Coca-Cola":  pranzo1 = 2; break;
-	        case "Vino":  pranzo1 = 3; break;
-	        case "Birra":  pranzo1 = 4; break;
-	        case "Aranciata":  pranzo1 = 5; break;
-	        case "Sprite":  pranzo1 = 6; break;
-	        case "Spremuta/Succo":  pranzo1 = 7; break;
-	        default: pranzo1= 0; break;
-		}
-		switch ((String)pran2.getValue()) {
-	        case "Primo":  pranzo2 = 1; break;
-	        case "Secondo":  pranzo2 = 2; break;
-	        case "Insalata":  pranzo2 = 3; break;
-	        case "Contorno":  pranzo2 = 4; break;
-	        case "Panino":  pranzo2 = 5; break;
-	        default: pranzo2= 0; break;
-		}
-		switch ((String)pran3.getValue()) {
-	        case "Primo":  pranzo3 = 1; break;
-	        case "Secondo":  pranzo3 = 2; break;
-	        case "Insalata":  pranzo3 = 3; break;
-	        case "Contorno":  pranzo3 = 4; break;
-	        case "Panino":  pranzo3 = 5; break;
-	        default: pranzo3 = 0; break;
-		}
-		switch ((String)spun21.getValue()) {
-	        case "Acqua":  spuntino21 = 1; break;
-	        case "Coca-Cola":  spuntino21 = 2; break;
-	        case "Vino":  spuntino21 = 3; break;
-	        case "Birra":  spuntino21 = 4; break;
-	        case "Aranciata":  spuntino21 = 5; break;
-	        case "Sprite":  spuntino21 = 6; break;
-	        case "Spremuta/Succo":  spuntino21 = 7; break;
-	        default: spuntino21= 0; break;
-		}
-		switch ((String)spun22.getValue()) {
-	        case "Panino":  spuntino22 = 1; break;
-	        case "Torta/crostata":  spuntino22 = 2; break;
-	        case "Cracker":  spuntino22 = 3; break;
-	        case "Frutta/frullato":  spuntino22 = 4; break;
-	        default: spuntino22 = 0; break;
-		}
-		switch ((String)spun23.getValue()) {
-	        case "Panino":  spuntino23 = 1; break;
-	        case "Torta/crostata":  spuntino23 = 2; break;
-	        case "Cracker":  spuntino23 = 3; break;
-	        case "Frutta/frullato":  spuntino23 = 4; break;
-	        default: spuntino23 = 0; break;
-		}
-		switch ((String)cen1.getValue()) {
-	        case "Acqua":  cena1 = 1; break;
-	        case "Coca-Cola":  cena1 = 2; break;
-	        case "Vino":  cena1 = 3; break;
-	        case "Birra":  cena1 = 4; break;
-	        case "Aranciata":  cena1 = 5; break;
-	        case "Sprite":  cena1 = 6; break;
-	        case "Spremuta/Succo":  cena1 = 7; break;
-	        default: cena1= 0; break;
-		}
-		switch ((String)cen2.getValue()) {
-	        case "Primo":  cena2 = 1; break;
-	        case "Secondo":  cena2 = 2; break;
-	        case "Insalata":  cena2 = 3; break;
-	        case "Contorno":  cena2 = 4; break;
-	        case "Panino":  cena2 = 5; break;
-	        default: cena2 = 0; break;
-		}
-		switch ((String)cen3.getValue()) {
-	        case "Primo":  cena3 = 1; break;
-	        case "Secondo":  cena3 = 2; break;
-	        case "Insalata":  cena3 = 3; break;
-	        case "Contorno":  cena3 = 4; break;
-	        case "Panino":  cena3 = 5; break;
-	        default: cena3 = 0; break;
-		}
-		
+	public void savechangehabit(ActionEvent Event) {
 
-		System.out.println(colazione1+""+colazione2+""+colazione3);
-		System.out.println(spuntino11+""+spuntino12+""+spuntino13);
-		System.out.println(pranzo1+""+pranzo2+""+pranzo3);
-		System.out.println(spuntino21+""+spuntino22+""+spuntino23);
-		System.out.println(cena1+""+cena2+""+cena3);
-		
-		//ok = Client.cambioabitudini();
-		try {
-			//INSERISCE LA MATRICE 5X3 DENTRO UN FILE DI TESTO CHE HA PER NOME NUMERO_ID.TXT
-			stampamatrix(colazione1, colazione2, colazione3, spuntino11, spuntino12, spuntino13, pranzo1, pranzo2, pranzo3, spuntino21, spuntino22, spuntino23, cena1, cena2, cena3); 
-			//LEGGE I VALORI E LI INSERISCE DENTRO UNA MATRICE MOMENTANEA, DENTRO DIETLYTICS
-			//Algorithm.readmatrix();
-			Parent root = FXMLLoader.load(getClass().getResource("../view/newdiet.fxml"));
-			Scene scene1 = new Scene(root);
-        	Dietlytics.Stage.setScene(scene1);
-        	Dietlytics.Stage.show();
-        	
-        	System.out.println("BACK TO MENU HOMEPAGE");
-		} 
-		catch (IOException ev)
-		{
-			ev.printStackTrace();
-		}
-	}
+		int aspun11 = prendoIdDaProdotto((String) spun11.getValue());
+		int aspun12 = prendoIdDaProdotto((String) spun12.getValue());
+		int aspun13 = prendoIdDaProdotto((String) spun13.getValue());
+		int aspun21 = prendoIdDaProdotto((String) spun21.getValue());
+		int aspun22 = prendoIdDaProdotto((String) spun22.getValue());
+		int aspun23 = prendoIdDaProdotto((String) spun23.getValue());
+		int acol1 = prendoIdDaProdotto((String) col1.getValue());
+		int acol2 = prendoIdDaProdotto((String) col2.getValue());
+		int acol3 = prendoIdDaProdotto((String) col3.getValue());
+		int acen1 = prendoIdDaProdotto((String) cen1.getValue());
+		int acen2 = prendoIdDaProdotto((String) cen2.getValue());
+		int acen3 = prendoIdDaProdotto((String) cen3.getValue());
+		int apran1 = prendoIdDaProdotto((String) pran1.getValue());
+		int apran2 = prendoIdDaProdotto((String) pran2.getValue());
+		int apran3 = prendoIdDaProdotto((String) pran3.getValue());
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		if(Client.checkLife(Dietlytics.user.getId())<8){
-			
-			Algorithm.readmatrix();
-			
-			switch (Dietlytics.user.getAbitudini(0, 0)) {
-		        case 1: col1.setValue("Acqua"); break;
-		        case 2: col1.setValue("Latte"); break;
-		        case 3: col1.setValue("Caffè"); break;
-		        case 4: col1.setValue("Cappuccino"); break;
-		        case 5: col1.setValue("Tè"); break;
-		        case 6: col1.setValue("Spremuta/Succo"); break;
-			}		
-			switch (Dietlytics.user.getAbitudini(0, 1)) {
-		        case 1: col2.setValue("Cereali"); break;
-		        case 2: col2.setValue("Frumento/Avena"); break;
-		        case 3: col2.setValue("Brioches"); break;
-		        case 4: col2.setValue("Cornetto/Sfoglia"); break;
-		        case 5: col2.setValue("Torta/Crostata"); break;
-			}
-			switch (Dietlytics.user.getAbitudini(0, 2)) {
-		        case 1: col3.setValue("Cereali"); break;
-		        case 2: col3.setValue("Frumento/Avena"); break;
-		        case 3: col3.setValue("Brioches"); break;
-		        case 4: col3.setValue("Cornetto/Sfoglia"); break;
-		        case 5: col3.setValue("Torta/Crostata"); break;
-			}
-			switch (Dietlytics.user.getAbitudini(1, 0)) {
-		        case 1: spun11.setValue("Acqua"); break;
-		        case 2: spun11.setValue("Coca-Cola"); break;
-		        case 3: spun11.setValue("Vino"); break;
-		        case 4: spun11.setValue("Birra"); break;
-		        case 5: spun11.setValue("Aranciata"); break;
-		        case 6: spun11.setValue("Sprite"); break;
-		        case 7: spun11.setValue("Spremuta/Succo"); break;
-			}
-			switch (Dietlytics.user.getAbitudini(1,1)) {
-		        case 1: spun12.setValue("Crackers"); break;
-		        case 2: spun12.setValue("Tramezzino"); break;
-		        case 3: spun12.setValue("Biscotti/grissini"); break;
-		        case 4: spun12.setValue("Merendina"); break;
-		        case 5: spun12.setValue("Yogurt"); break;
-		        case 6: spun12.setValue("Frutta"); break;
-			}
-			switch (Dietlytics.user.getAbitudini(1,2)) {
-		        case 1: spun13.setValue("Crackers"); break;
-		        case 2: spun13.setValue("Tramezzino"); break;
-		        case 3: spun13.setValue("Biscotti/grissini"); break;
-		        case 4: spun13.setValue("Merendina"); break;
-		        case 5: spun13.setValue("Yogurt"); break;
-		        case 6: spun13.setValue("Frutta"); break;
-			}
-			switch (Dietlytics.user.getAbitudini(2, 0)) {
-		        case 1: pran1.setValue("Acqua"); break;
-		        case 2: pran1.setValue("Coca-Cola"); break;
-		        case 3: pran1.setValue("Vino"); break;
-		        case 4: pran1.setValue("Birra"); break;
-		        case 5: pran1.setValue("Aranciata"); break;
-		        case 6: pran1.setValue("Sprite"); break;
-		        case 7: pran1.setValue("Spremuta/Succo"); break;
-			}
-			switch (Dietlytics.user.getAbitudini(2,1)) {
-		        case 1: pran2.setValue("Primo"); break;
-		        case 2: pran2.setValue("Secondo"); break;
-		        case 3: pran2.setValue("Insalata"); break;
-		        case 4: pran2.setValue("Contorno"); break;
-		        case 5: pran2.setValue("Panino"); break;
-			}
-			switch (Dietlytics.user.getAbitudini(2,2)) {
-		        case 1: pran3.setValue("Primo"); break;
-		        case 2: pran3.setValue("Secondo"); break;
-		        case 3: pran3.setValue("Insalata"); break;
-		        case 4: pran3.setValue("Contorno"); break;
-		        case 5: pran3.setValue("Panino"); break;
-			}
-			switch (Dietlytics.user.getAbitudini(3, 0)) {
-		        case 1: spun21.setValue("Acqua"); break;
-		        case 2: spun21.setValue("Coca-Cola"); break;
-		        case 3: spun21.setValue("Vino"); break;
-		        case 4: spun21.setValue("Birra"); break;
-		        case 5: spun21.setValue("Aranciata"); break;
-		        case 6: spun21.setValue("Sprite"); break;
-		        case 7: spun21.setValue("Spremuta/Succo"); break;
-			}
-			switch (Dietlytics.user.getAbitudini(3,1)) {
-		        case 1: spun22.setValue("Panino"); break;
-		        case 2: spun22.setValue("Torta/crostata"); break;
-		        case 3: spun22.setValue("Cracker"); break;
-		        case 4: spun22.setValue("Frutta/frullato"); break;
-			}
-			switch (Dietlytics.user.getAbitudini(3,2)) {
-		        case 1: spun23.setValue("Panino"); break;
-		        case 2: spun23.setValue("Torta/crostata"); break;
-		        case 3: spun23.setValue("Cracker"); break;
-		        case 4: spun23.setValue("Frutta/frullato"); break;
-			}
-			switch (Dietlytics.user.getAbitudini(4, 0)) {
-		        case 1: cen1.setValue("Acqua"); break;
-		        case 2: cen1.setValue("Coca-Cola"); break;
-		        case 3: cen1.setValue("Vino"); break;
-		        case 4: cen1.setValue("Birra"); break;
-		        case 5: cen1.setValue("Aranciata"); break;
-		        case 6: cen1.setValue("Sprite"); break;
-		        case 7: cen1.setValue("Spremuta/Succo"); break;
-			}
-			switch (Dietlytics.user.getAbitudini(4,1)) {
-		        case 1: cen2.setValue("Primo"); break;
-		        case 2: cen2.setValue("Secondo"); break;
-		        case 3: cen2.setValue("Insalata"); break;
-		        case 4: cen2.setValue("Contorno"); break;
-		        case 5: cen2.setValue("Panino"); break;
-			}
-			switch (Dietlytics.user.getAbitudini(4,2)) {
-		        case 1: cen3.setValue("Primo"); break;
-		        case 2: cen3.setValue("Secondo"); break;
-		        case 3: cen3.setValue("Insalata"); break;
-		        case 4: cen3.setValue("Contorno"); break;
-		        case 5: cen3.setValue("Panino"); break;
-			}
-		}
+		stampamatrix(acol1, acol2, acol3, aspun11, aspun12, aspun13, apran1, apran2, apran3, aspun21, aspun22, aspun23,
+				acen1, acen2, acen3);
 	}
+	
 }

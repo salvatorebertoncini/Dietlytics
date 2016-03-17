@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<root>
+  <Cliente nome="DIETA PER: Salvo&#10;"/>
+  <colazione colazione="COLAZIONE:&#10;Latte 455.80002gr &#10; marmellata prugne 45.58gr o altre marmellate159.53gr &#10; Fetta di Torta o Crostata 68.37gr o Fette Biscottate Integrali 45.58gr o cereali 56.975002gr &#10; Caffè o Tè FACOLTATIVI&#10;"/>
+  <primoSpuntino primoSpuntino="PRIMOSPUNTINO:&#10;Yogurt 296.27002gr &#10;Albicocche 227.90001gr o banana 45.58gr&#10;"/>
+  <pranzo pranzo="PRANZO:&#10;Pasta 227.90001gr &#10;olio 5gr &#10;Parmigiano 227.90001gr o Bresaola 200gr &#10;Tonno 113.950005gr o Vitello 136.74gr o Pollo 182.32gr &#10;Spinaci 455.80002gr o Broccoli 455.80002gr&#10;"/>
+  <secondoSpuntino secondoSpuntino="SECONDOSPUNTINO:&#10;Mela  455.80002gr o Banana 159.53gr&#10;"/>
+  <cena cena="CENA:&#10;Pane 113.950005gr &#10;Pomodoro o Insalata 227.90001gr &#10;Legumi 227.90001gr &#10;olio 5gr"/>
+</root>

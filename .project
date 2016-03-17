@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Dietlytics</name>
+	<name>SoftwareDieta</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -16,47 +16,82 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>changepersonal.fxml</name>
+			<name>view</name>
+			<type>2</type>
+			<locationURI>virtual:/virtual</locationURI>
+		</link>
+		<link>
+			<name>view/base.fxml</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/bin/view/base.fxml</locationURI>
+		</link>
+		<link>
+			<name>view/changehabits.fxml</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/bin/view/changehabits.fxml</locationURI>
+		</link>
+		<link>
+			<name>view/changepersonal.fxml</name>
 			<type>1</type>
 			<locationURI>PROJECT_LOC/bin/view/changepersonal.fxml</locationURI>
 		</link>
 		<link>
-			<name>findfood.fxml</name>
+			<name>view/changeuser.fxml</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/bin/view/changeuser.fxml</locationURI>
+		</link>
+		<link>
+			<name>view/diet.jpg</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/bin/view/diet.jpg</locationURI>
+		</link>
+		<link>
+			<name>view/exit.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/bin/view/exit.png</locationURI>
+		</link>
+		<link>
+			<name>view/findfood.fxml</name>
 			<type>1</type>
 			<locationURI>PROJECT_LOC/bin/view/findfood.fxml</locationURI>
 		</link>
 		<link>
-			<name>history.fxml</name>
+			<name>view/history.fxml</name>
 			<type>1</type>
 			<locationURI>PROJECT_LOC/bin/view/history.fxml</locationURI>
 		</link>
 		<link>
-			<name>info.fxml</name>
+			<name>view/info.fxml</name>
 			<type>1</type>
 			<locationURI>PROJECT_LOC/bin/view/info.fxml</locationURI>
 		</link>
 		<link>
-			<name>loginregistration.fxml</name>
+			<name>view/loginregistration.fxml</name>
 			<type>1</type>
 			<locationURI>PROJECT_LOC/bin/view/loginregistration.fxml</locationURI>
 		</link>
 		<link>
-			<name>menu.fxml</name>
+			<name>view/logout.png</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/bin/view/logout.png</locationURI>
+		</link>
+		<link>
+			<name>view/menu.fxml</name>
 			<type>1</type>
 			<locationURI>PROJECT_LOC/bin/view/menu.fxml</locationURI>
 		</link>
 		<link>
-			<name>newdiet.fxml</name>
+			<name>view/newdiet.fxml</name>
 			<type>1</type>
 			<locationURI>PROJECT_LOC/bin/view/newdiet.fxml</locationURI>
 		</link>
 		<link>
-			<name>removeuser.fxml</name>
+			<name>view/removeuser.fxml</name>
 			<type>1</type>
 			<locationURI>PROJECT_LOC/bin/view/removeuser.fxml</locationURI>
 		</link>
 		<link>
-			<name>select.fxml</name>
+			<name>view/select.fxml</name>
 			<type>1</type>
 			<locationURI>PROJECT_LOC/bin/view/select.fxml</locationURI>
 		</link>

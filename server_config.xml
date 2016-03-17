@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Server><Port_socket>6001</Port_socket><Database IP="127.0.0.1" Port="3306"><Name>Dietlytics</Name><User>admin</User><Pass>admin</Pass></Database></Server>

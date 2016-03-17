@@ -1,94 +1,73 @@
-package Client;
-import java.io.*;
-import java.net.*;
+package client;
 
-import Server.ServerDAOCheck;
-import Server.ServerDAOLogin;
-import Server.ServerDAORegistration;
+import java.io.File;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 
-public class Client 
-{
-	Socket socket;
-	DataOutputStream OutputStream;
-	BufferedReader InputStream;
-	BufferedReader stdIn;
-	String query;
-	
-	public void start() 
-	{
-		try{
-		 socket = new Socket ("127.0.0.1",6001);
-		 //socket.close();
-		}catch(Exception e){
-			System.out.println(e.getMessage()+"------>"+socket);
-		}
-	}
-	
-	public static boolean requestChange(int id, String RegNome, String RegCognome, String RegUsername, String RegPassword, String RegEmail, String RegDataDiNascita, 
-			int RegSex, String RegWeight, String RegHeight){
-		boolean login = ServerDAORegistration.ChangeCheck(id, RegNome, RegCognome, RegUsername, RegPassword, RegEmail, RegDataDiNascita, RegSex, RegWeight, RegHeight);
-		return login;
-	}
-	
-	public static boolean requestChangeUser(int id, String Username, String Password){
-		boolean login = ServerDAORegistration.ChangeUser(id, Username, Password);
-		return login;
-	}
-	
-	public static boolean requestLogin(String Username, String Password){
-		boolean login = ServerDAOLogin.LoginCheck(Username, Password);
-		return login;
-	}
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
-	public static boolean requestRegistration(String regNome, String regCognome, String regUsername, String regPassword,
-			String regEmail, String regDataDiNascita, int regSex, String regWeight, String regHeight) {
-		boolean Registration = ServerDAORegistration.RegistrationCheck(regNome, regCognome, regUsername, regPassword, regEmail, 
-				regDataDiNascita, regSex, regWeight, regHeight);
-		return Registration;
-	}
-	
-	public static String findFood(String nome, int gr){
-		String find = ServerDAOCheck.FindCheck(nome, gr);
-		return find;
-	}
+import org.w3c.dom.Document;
 
-	public static boolean requestDeleteUser(int id) {
-		boolean ok = true;
-		ok = ServerDAORegistration.deleteUser(id);
-		return ok;	
+import controller.InterfacciaIniziale;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+public class Client extends Application{
+
+	public static Scene scene;
+	public static Stage Stage;
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		Socket clientSocket;
+		ObjectOutputStream versoServer;
+		ObjectInputStream dalServer;
+		try
+		{	
+			Document document = Client.ReadXML("client_config.xml");
+			String ipAddress = document.getElementsByTagName("Socket").item(0).getAttributes().item(0).getTextContent();
+            int portSocket = Integer.parseInt(document.getElementsByTagName("Socket").item(0).getAttributes().item(1).getTextContent());
+			clientSocket = new Socket (ipAddress, portSocket);
+			versoServer = new ObjectOutputStream(clientSocket.getOutputStream());
+			dalServer = new ObjectInputStream(clientSocket.getInputStream());
+
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/loginregistration.fxml"));
+			scene = new Scene(loader.load());
+			Stage = primaryStage;
+			Stage.setScene(scene);
+			Stage.show();
+			InterfacciaIniziale controller = loader.<InterfacciaIniziale>getController();
+			controller.initializePage(versoServer,dalServer);
+			} catch(Exception exc) {
+			System.out.println("Errore-InitialieDefaultCartController: " + exc.getMessage());
+			exc.printStackTrace();
+			}
 	}
 	
-	public static boolean requestField(int id, StringBuilder regNome, StringBuilder regCognome, StringBuilder regUsername, StringBuilder regPassword, StringBuilder regEmail, StringBuilder regDataDiNascita, StringBuilder regSex, StringBuilder regHeight, StringBuilder regWeight){
-		boolean ok = true;
-		ok = ServerDAORegistration.requestField(id, regNome, regCognome, regUsername, regPassword, regEmail, regDataDiNascita, regSex, regHeight, regWeight);
-		System.out.println("prova sex Client: "+regSex);
-		return ok;
-	}
-	
-	public static boolean newDiet(int id, int lifestyle, int typediet, String date, int all){
-		return ServerDAORegistration.registerNewDiet(id, lifestyle, typediet, date, all);
-	}
+	public static Document ReadXML(String path) {
+        Document document = null;
+        try {
+            File file = new File(path);
+            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+            document = dBuilder.parse(file);
+            document.getDocumentElement().normalize();
+        } catch(Exception exc) {
+            System.out.println("Errore: " + exc.getMessage());
+            exc.printStackTrace();
+        }
 
-	public static boolean algorithminformations(int id, StringBuilder l, StringBuilder s, StringBuilder h, StringBuilder w, StringBuilder a) {
-		return ServerDAORegistration.requestInformation(id, l, s, h, w, a);	
-	}
+        return document;
+    }
 
-	public static boolean readDiet(StringBuilder dieta, StringBuilder data) {
-		return ServerDAORegistration.readDiet(dieta, data);		
-	}
-
-	public static void initializeHistoryButton(StringBuilder num, StringBuilder name, StringBuilder id) {
-		ServerDAORegistration.initializeHistoryButton(num, name, id);
+	public static void main (String[] args) throws Exception {
 		
-	}
+		Application.launch(Client.class, (java.lang.String[])null);	
 
-	public static String findDiet(int string) {
-		return ServerDAORegistration.findDiet(string);
-	}
-
-	public static int checkLife(int id) {
-		int ok=9;
-		ok=ServerDAORegistration.checkLife(id);
-		return ok;
 	}
 }

@@ -1,150 +1,182 @@
-package Controller;
+package controller;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import Dietlytics.Dietlytics;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import model.*;
+import client.*;
+import comunicazione.*;
 
-public class InterfacciaMenu implements Initializable{
+public class InterfacciaMenu{
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		welcometext.setText("Benvenuto, "+Dietlytics.user.getWelcome()+"!");
-		
-	}
-	
+	ObjectOutputStream versoServer;
+	ObjectInputStream dalServer;	
+	Scene scene;
+
 	@FXML
 	TextField DDNewDiet;
-	
+
 	@FXML
 	TextField MMNewDiet;
-	
+
 	@FXML
 	TextField YYYYNewDiet;
-	
+
 	@FXML
 	Text welcometext;
-	
-	//LOGOUT
-	@FXML
-	public void logout(){
-		try {
-			
-			Parent root = FXMLLoader.load(getClass().getResource("../view/loginregistration.fxml"));
-			Scene scene1 = new Scene(root);
-        	Dietlytics.Stage.setScene(scene1);
-        	Dietlytics.Stage.show();
-        	System.out.println("LOGOUT EFFETTUATO");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+
+	public void initializePage(ObjectOutputStream versoServer, ObjectInputStream dalServer) {
+		this.dalServer=dalServer;
+		this.versoServer=versoServer;
+		try{
+			Richiesta richiestaInizializzaWelcome = new Richiesta(TipiRichieste.InizializzaMenu, null);
+
+			versoServer.writeObject(richiestaInizializzaWelcome);
+			versoServer.flush();
+
+			Risposta risposta = (Risposta) dalServer.readObject();
+			if (risposta.Tipo==TipiRisposte.WelcomeSuccesso) 
+				welcometext.setText("Benvenuto, " + ((MUtility) risposta.Oggetto).getWelcome() + "!");
+		}catch(Exception e)
+		{
 			e.printStackTrace();
-			}
+		}
 	}
-	
-	//SWITCH "Nuova Dieta"
+
+	// LOGOUT
 	@FXML
-	public void openNewDiet(){
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("../view/newdiet.fxml"));
-			Scene scene1 = new Scene(root);
-        	Dietlytics.Stage.setScene(scene1);
-        	Dietlytics.Stage.show();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			}
+	public void logout() {
+		try{
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/loginregistration.fxml"));
+			scene = new Scene(loader.load());
+			Client.Stage.setScene(scene);
+			Client.Stage.show();
+			InterfacciaIniziale controller = loader.<InterfacciaIniziale>getController();
+			controller.initializePage(versoServer,dalServer);
+		} catch(Exception exc) {
+			System.out.println("Errore-InitialieDefaultCartController: " + exc.getMessage());
+			exc.printStackTrace();
+		}
 	}
-	
-	//SWITCH "Storico"
+
+	// SWITCH "Nuova Dieta"
 	@FXML
-	public void history(){
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("../view/history.fxml"));
-			Scene scene1 = new Scene(root);
-        	Dietlytics.Stage.setScene(scene1);
-        	Dietlytics.Stage.show();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			}
+	public void openNewDiet() {
+		try{
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/newdiet.fxml"));
+			scene = new Scene(loader.load());
+			Client.Stage.setScene(scene);
+			Client.Stage.show();
+			InterfacciaNuovaDieta controller = loader.<InterfacciaNuovaDieta>getController();
+			controller.initializePage(versoServer,dalServer);
+		} catch(Exception exc) {
+			System.out.println("Errore-InitialieDefaultCartController: " + exc.getMessage());
+			exc.printStackTrace();
+		}
 	}
-	
-	//SWITCH "Ricerca Cibo"
+
+	// SWITCH "Storico"
 	@FXML
-	public void ricercacibo(){
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("../view/findfood.fxml"));
-			Scene scene1 = new Scene(root);
-        	Dietlytics.Stage.setScene(scene1);
-        	Dietlytics.Stage.show();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			}
+	public void history() {
+		try{
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/history.fxml"));
+			scene = new Scene(loader.load());
+			Client.Stage.setScene(scene);
+			Client.Stage.show();
+			InterfacciaStorico controller = loader.<InterfacciaStorico>getController();
+			controller.initializePage(versoServer,dalServer);
+		} catch(Exception exc) {
+			System.out.println("Errore-InitialieDefaultCartController: " + exc.getMessage());
+			exc.printStackTrace();
+		}
 	}
-	
-	//SWITCH "Modifica dati iniziali"
+
+	// SWITCH "Ricerca Cibo"
 	@FXML
-	public void openChangePersonal(){
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("../view/changepersonal.fxml"));
-			Scene scene1 = new Scene(root);
-        	Dietlytics.Stage.setScene(scene1);
-        	Dietlytics.Stage.show();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			}
+	public void ricercacibo() {
+		try{
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/findfood.fxml"));
+			scene = new Scene(loader.load());
+			Client.Stage.setScene(scene);
+			Client.Stage.show();
+			InterfacciaRicercaCibo controller = loader.<InterfacciaRicercaCibo>getController();
+			controller.initializePage(versoServer,dalServer);
+		} catch(Exception exc) {
+			System.out.println("Errore-InitialieDefaultCartController: " + exc.getMessage());
+			exc.printStackTrace();
+		}
 	}
-	
-	//SWITCH "Modifica Abitudini"
+
+	// SWITCH "Modifica dati iniziali"
 	@FXML
-	public void openChangeHabit(){
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("../view/select.fxml"));
-			Scene scene1 = new Scene(root);
-        	Dietlytics.Stage.setScene(scene1);
-        	Dietlytics.Stage.show();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			}
+	public void openChangePersonal() {
+		try{
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/changepersonal.fxml"));
+			scene = new Scene(loader.load());
+			Client.Stage.setScene(scene);
+			Client.Stage.show();
+			InterfacciaModificaDatiPersonali controller = loader.<InterfacciaModificaDatiPersonali>getController();
+			controller.initializePage(versoServer,dalServer);
+		} catch(Exception exc) {
+			System.out.println("Errore-InitialieDefaultCartController: " + exc.getMessage());
+			exc.printStackTrace();
+		}
 	}
-	
-	//SWITCH "Elimina Utente"
+
+	// SWITCH "Modifica Abitudini"
 	@FXML
-	public void openDeleteUser(){
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("../view/removeuser.fxml"));
-			Scene scene1 = new Scene(root);
-        	Dietlytics.Stage.setScene(scene1);
-        	Dietlytics.Stage.show();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			}
+	public void openChangeHabit() {
+		try{
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/select.fxml"));
+			scene = new Scene(loader.load());
+			Client.Stage.setScene(scene);
+			Client.Stage.show();
+			InterfacciaModificaDatiDieta controller = loader.<InterfacciaModificaDatiDieta>getController();
+			controller.initializePage(versoServer,dalServer);
+		} catch(Exception exc) {
+			System.out.println("Errore-InitialieDefaultCartController: " + exc.getMessage());
+			exc.printStackTrace();
+		}
 	}
-	
-	//SWITCH "About -> Info"
+
+	// SWITCH "Elimina Utente"
 	@FXML
-	public void openabout(){
-		try {
-			Parent root = FXMLLoader.load(getClass().getResource("../view/info.fxml"));
-			Scene scene1 = new Scene(root);
-        	Dietlytics.Stage.setScene(scene1);
-        	Dietlytics.Stage.show();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			}
+	public void openDeleteUser() {
+		try{
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/removeuser.fxml"));
+			scene = new Scene(loader.load());
+			Client.Stage.setScene(scene);
+			Client.Stage.show();
+			InterfacciaEliminaUtente controller = loader.<InterfacciaEliminaUtente>getController();
+			controller.initializePage(versoServer,dalServer);
+		} catch(Exception exc) {
+			System.out.println("Errore-InitialieDefaultCartController: " + exc.getMessage());
+			exc.printStackTrace();
+		}
+	}
+
+	// SWITCH "About -> Info"
+	@FXML
+	public void openabout() {
+		try{
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/info.fxml"));
+			scene = new Scene(loader.load());
+			Client.Stage.setScene(scene);
+			Client.Stage.show();
+			InterfacciaInfo controller = loader.<InterfacciaInfo>getController();
+			controller.initializePage(versoServer,dalServer);
+		} catch(Exception exc) {
+			System.out.println("Errore-InitialieDefaultCartController: " + exc.getMessage());
+			exc.printStackTrace();
+		}
 	}
 
 }

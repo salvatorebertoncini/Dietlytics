@@ -8,11 +8,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.collections.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.InterfacciaNuovaDieta">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InterfacciaNuovaDieta">
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../diet.jpg" />
+            <Image url="@diet.jpg" />
          </image></ImageView>
          
       <Text layoutX="77.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dietlytics" wrappingWidth="219.0">

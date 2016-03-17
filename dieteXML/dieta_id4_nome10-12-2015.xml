@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<root>
+  <Cliente nome="DIETA PER: Salvo&#10;"/>
+  <colazione colazione="COLAZIONE:&#10;Albume di uovo 660.4gr &#10; Fiocchi di Riso 132.08gr&#10;"/>
+  <primoSpuntino primoSpuntino="PRIMOSPUNTINO:&#10;Yogurt 429.26gr &#10;Albicocche 330.2gr o banana 66.04gr&#10;"/>
+  <pranzo pranzo="PRANZO:&#10;Pasta 330.2gr &#10;olio 5gr &#10;Parmigiano 330.2gr o Bresaola 200gr &#10;Tonno 165.1gr o Vitello 198.12gr o Pollo 264.16gr &#10;Spinaci 660.4gr o Broccoli 660.4gr&#10;"/>
+  <secondoSpuntino secondoSpuntino="SECONDOSPUNTINO:&#10;Mela  660.4gr o Banana 231.14gr&#10;"/>
+  <cena cena="CENA:&#10;Pane 165.1gr &#10;Pomodoro  o  Insalata 330.2gr &#10;Legumi 330.2gr &#10;olio 5gr"/>
+</root>

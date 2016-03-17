@@ -7,11 +7,11 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.InterfacciaInfo">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.InterfacciaInfo">
    <children>
       <ImageView fitHeight="600.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../diet.jpg" />
+            <Image url="@diet.jpg" />
          </image></ImageView>
          
       <Text layoutX="77.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dietlytics" wrappingWidth="219.0">
@@ -19,7 +19,7 @@
             <Font size="48.0" />
          </font>
       </Text>
-      <Text layoutX="359.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dietlytics  v. 1.0" />
+      <Text layoutX="359.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dietlytics  v. 1.2" />
       <Text layoutX="180.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Software che permette, una volta inserite abitudini alimentari, dati personali, tipo di" />
       <Text layoutX="190.0" layoutY="339.0" strokeType="OUTSIDE" strokeWidth="0.0" text="dieta desiderato e intolleranze, di calcolare la dieta perfetta in modo scientifico." />
       <Text layoutX="306.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Salvo Bertoncini &amp; Sergio Zavettieri" />
